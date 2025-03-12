@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RASA Chatbot</title>
+    <style>
+        body {
+            margin: 0; /* Asegúrate de que no haya márgenes por defecto */
+        }
+        .widget {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #rasa-chat-widget {
+            margin-top: 20px; /* Ajusta el valor según tus necesidades */
+        }
+    </style>
+</head>
+<body>
+    <div class="widget">
+        <h2>Mi Widget</h2>
+        <p>Este es un simple widget de ejemplo.</p>
+    </div>
+    <div id="rasa-chat-widget" data-websocket-url="http://localhost:5050"></div>
+    <script src="https://unpkg.com/@rasahq/rasa-chat" type="application/javascript"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const widget = document.querySelector("#rasa-chat-widget");
+            if (widget) {
+                widget.addEventListener("rasa_chat_error", function(event) {
+                    console.error("RASA Chat Error:", event.detail);
+                });
+                widget.addEventListener("rasa_chat_ready", function() {
+                    console.log("RASA Chat is ready!");
+                });
+            } else {
+                console.error("RASA Chat widget not found!");
+            }
+        });
+    </script>
+</body>
+</html>
