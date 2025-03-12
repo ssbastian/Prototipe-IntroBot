@@ -3,6 +3,8 @@
 
 Este es un prototipo chatbot desarrollado con **Rasa** para el proyecto de tesis.
 
+TODO
+
 ## 📂 Estructura del Proyecto
 ```
 actions/
