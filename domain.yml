@@ -1,33 +1,35 @@
 version: "2.0"
 
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+  - saludo
+  - despedida
+  - consulta_ayuda
+  - motivacion
+  - consejos_sociales
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
+    - text: "¡Hola! ¿Cómo te sientes hoy?"
+    - text: "¡Hey! ¿Cómo puedo ayudarte?"
 
   utter_goodbye:
-  - text: "Bye"
+    - text: "Nos vemos pronto. ¡Cuídate!"
+    - text: "Adiós, recuerda que siempre puedes volver."
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  utter_ayuda:
+    - text: "Entiendo cómo te sientes. No estás solo, estoy aquí para escucharte."
+    - text: "Dime más sobre lo que te preocupa, te ayudaré lo mejor que pueda."
+
+  utter_motivacion:
+    - text: "No te rindas. Cada pequeño paso cuenta. 🌟"
+    - text: "Eres más fuerte de lo que crees. ¡Sigue adelante! 💪"
+
+  utter_consejos_sociales:
+    - text: "Cuando hables con alguien nuevo, empieza con algo sencillo como 'Hola, ¿cómo ha estado tu día?'."
+    - text: "No te preocupes demasiado por lo que los demás piensen. Sé tú mismo."
+
+actions:
+  - action_motivacion_personalizada
 
 session_config:
   session_expiration_time: 60

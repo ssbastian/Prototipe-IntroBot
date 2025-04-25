@@ -5,6 +5,25 @@
 # https://rasa.com/docs/rasa/custom-actions
 
 
+from rasa_sdk import Action
+from rasa_sdk.executor import CollectingDispatcher
+import random
+
+class ActionMotivacion(Action):
+    def name(self):
+        return "action_motivacion_personalizada"
+
+    def run(self, dispatcher, tracker, domain):
+        frases = [
+            "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
+            "No te compares con los demás, solo compite contigo mismo.",
+            "A veces, el paso más pequeño en la dirección correcta se convierte en el más grande de tu vida."
+        ]
+        mensaje = random.choice(frases)
+        dispatcher.utter_message(text=mensaje)
+        return []
+
+
 # This is a simple example for a custom action which utters "Hello World!"
 
 # from typing import Any, Text, Dict, List

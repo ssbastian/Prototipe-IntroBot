@@ -1,13 +1,22 @@
 version: "2.0"
 
 rules:
-
-- rule: Say goodbye anytime the user says goodbye
+- rule: Responder cuando el usuario saluda
   steps:
-  - intent: goodbye
+  - intent: saludo
+  - action: utter_greet
+
+- rule: Responder cuando el usuario se despide
+  steps:
+  - intent: despedida
   - action: utter_goodbye
 
-- rule: Say 'I am a bot' anytime the user challenges
+- rule: Responder cuando el usuario pide ayuda
   steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  - intent: consulta_ayuda
+  - action: utter_ayuda
+
+- rule: Dar motivación personalizada
+  steps:
+  - intent: motivacion
+  - action: action_motivacion_personalizada
