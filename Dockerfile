@@ -24,6 +24,7 @@ RUN pip install -r requirements.txt
 EXPOSE 5005
 
 # Comando para iniciar el bot
-CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT --debug"]
+CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT --host 0.0.0.0 --debug"]
+#CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT --debug"]
 #CMD ["rasa", "run", "--enable-api", "--cors", "*"]
 #CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "5005"]
