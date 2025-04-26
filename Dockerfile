@@ -19,4 +19,4 @@ COPY . .
 EXPOSE 10000
 
 # Comando clave: --host 0.0.0.0 es obligatorio para Render
-CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "10000", "--host", "0.0.0.0"]
+CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "10000"]
