@@ -2,18 +2,30 @@ FROM python:3.8-slim
 
 WORKDIR /app
 
+# Instalar dependencias del sistema
 RUN apt-get update && \
-    apt-get install -y build-essential gfortran libatlas-base-dev && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y --no-install-recommends \
+    build-essential \
+    gfortran \
+    libatlas-base-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY . /app
+# Copiar primero los archivos de requisitos para aprovechar la caché de Docker
+COPY requirements.txt .
 
+# Crear y activar el entorno virtual
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+# Instalar dependencias de Python
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
+# Copiar el resto de los archivos
+COPY . .
+
+# Puerto expuesto (Render usará el que especifiques en sus configuraciones)
 EXPOSE 10000
 
-CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port ${PORT} --debug"]
+# Comando para ejecutar Rasa (usando shell form para variables de entorno)
+CMD rasa run --enable-api --cors "*" --port $PORT
