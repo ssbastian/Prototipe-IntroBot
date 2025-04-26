@@ -1,29 +1,19 @@
-# Usa Python 3.8 (compatible con Rasa)
 FROM python:3.8-slim
 
-# Carpeta de trabajo dentro del contenedor
 WORKDIR /app
 
-# Instala librerías del sistema necesarias
 RUN apt-get update && \
     apt-get install -y build-essential gfortran libatlas-base-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Copia tu proyecto al contenedor
 COPY . /app
 
-# Crea un entorno virtual (opcional pero recomendable)
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-# Instala dependencias de Python
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Expone el puerto de Rasa
-EXPOSE 5005
+EXPOSE 10000
 
-# Comando para iniciar el bot
-CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT --debug"]
-#CMD ["rasa", "run", "--enable-api", "--cors", "*"]
-#CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "5005"]
+CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port ${PORT} --host 0.0.0.0 --debug"]
