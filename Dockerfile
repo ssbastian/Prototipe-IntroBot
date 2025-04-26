@@ -16,7 +16,6 @@ RUN pip install --upgrade pip && \
 COPY . .
 
 # Puerto expuesto (debe coincidir con el de Render)
-EXPOSE 10000
+EXPOSE 5055
 
-# Comando clave: --host 0.0.0.0 es obligatorio para Render
-CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "10000"]
+CMD ["rasa", "run", "actions", "--port", "5055", "--host", "0.0.0.0"]
