@@ -2,13 +2,11 @@ services:
   - type: web
     name: Prototipe-IntroBot
     runtime: docker
-    port: 10000
+    port: 5005  # ¡Debe coincidir con el puerto del Dockerfile y el CMD de Rasa!
     env: python
     build:
       dockerfile: Dockerfile
     envVars:
-      - key: PORT
-        value: "10000"
       - key: SANIC_WORKERS
-        value: "1"
-    plan: free  # Cambia a "starter" o "standard" para producción
+        value: "1"  # Reduce workers para evitar sobrecarga en plan free
+    plan: free
