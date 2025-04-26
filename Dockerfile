@@ -21,7 +21,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Expone el puerto de Rasa
-#EXPOSE 5005
+EXPOSE 5005
 
 # Comando para iniciar el bot
 CMD ["rasa", "run", "--enable-api", "--cors", "*"]
