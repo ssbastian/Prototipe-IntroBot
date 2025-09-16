@@ -1,0 +1,289 @@
+version: '3.1'
+intents:
+  - int_expresar_emocion
+  - int_si_actividades
+  - int_no_actividades
+  - int_sel_actividad
+  - int_sel_actividadAll
+
+
+
+    #detalle ACTIVIDADES
+  - int_elegir_activ_completa
+  - int_paso_listo
+  - int_finalizar_ejercicio
+  - int_solicitar_guia
+  - int_intentar_solo
+
+
+
+responses:
+  utter_TEST:
+    - text: Esto es una prueba
+  utter_emocion_prueba:
+    - text: elegiste emocion {slot_tipo_emocion}.
+  utter_opcion_prueba:
+    - text: elegiste opcion {slot_numActividad}.
+  utter_emocion_negativa:
+    - text: elegiste emocion negativa.
+  utter_emocion_positiva:
+    - text: elegiste emocion positiva.
+  utter_emocion_neutra:
+    - text: elegiste emocion neutra.
+  # utter_ofrecer_actividad:
+  # - text: Tengo varias opciones que podrían ayudarte. ¿Quieres que te muestre algunas actividades adecuadas para tu estado animico
+  #   buttons:
+  #     - title: "✅ Sí, muéstrame actividades"
+  #       payload: "/int_si_actividades"
+  #     - title: "❌ No, ahora no"
+  #       payload: "/int_no_actividades"
+  utter_respetar_decision:
+    - text: Esta bien {slot_name} respeto tu desición y si en algun momento quieres realizar alguna actividad solo dimelo 😀.
+ 
+  utter_menu_list_actividadesN:
+    - text: 'Opcones para momentos dificiles:
+
+        1️⃣ Respiración 4-7-8 (2 min)
+
+        2️⃣ Escritura terapéutica (10 min)
+
+        3️⃣ Audio de relajación (5 min)
+
+        4️⃣ Estiramientos rápidos
+
+        5️⃣ Todas las actividades
+
+        ¿Dime que número te interesa?
+
+        '
+  utter_menu_list_actividadesP:
+    - text: '¡Aprovecha esta energía!:
+
+        1️⃣ Compartir tu alegría con alguien especial
+
+        2️⃣ Bailar 3 canciones alegres
+
+        3️⃣ Empezar un proyecto creativo
+
+        4️⃣ Hacer una lista de gratitud
+
+        5️⃣ Todas las actividades
+
+        ¿Dime que número te interesa?
+
+        '
+  utter_menu_list_actividadesNE:
+    - text: 'Para momentos tranquilos:
+
+        1️⃣ Meditación breve (2-5 min)
+
+        2️⃣ Organizar un espacio personal
+
+        3️⃣ Leer algo inspirador
+
+        4️⃣ Hidratación consciente
+
+        5️⃣ Todas las actividades
+
+        '
+  utter_menu_sel_actividad:
+    - text: 'Elige una opción:'
+      buttons:
+      - title: "Botón 1"
+        payload: '/int_sel_actividad{{"ent_numActividad":"1"}}'
+      - title: "Botón 2"
+        payload: '/int_sel_actividad{{"ent_numActividad":"2"}}'
+      - title: "Botón 3"
+        payload: '/int_sel_actividad{{"ent_numActividad":"3"}}'
+      - title: "Botón 4"
+        payload: '/int_sel_actividad{{"ent_numActividad":"4"}}'
+      - title: Ver todas las actividades
+        payload: '/int_actividades_mostrarAll{{"ent_actividades_all": "false"}}'
+                
+                
+  utter_profundizar_actividades:
+    - text: "¿Necesitas una guía paso a paso o prefieres intentarlo por tu cuenta?"
+      buttons:
+        - title: "➡️Guía paso a paso"
+          payload: "/int_solicitar_guia"
+        - title: "➡️Intentarlo por mi cuenta"
+          payload: "/int_intentar_solo"
+
+
+# #  TODO AQUI ES .......
+#   utter_no_profundizar_actividades:
+#     - text: "¿Quieres?"
+#       buttons:
+#         - title: "➡️volver a las actividades?"
+#           payload: "/int_si_actividades"
+#         - title: "➡️Quieres otras alternativas"
+#           payload: "/int_no_actividades"
+#         - title: "➡️Quieres terminar la sesión?"
+#           payload: "/int_despedirse"
+
+
+
+
+
+  utter_no_detallar_ejercicios:
+    - text: "Si en algún momento quieres que te guíe, solo dímelo y con gusto te ayudo"
+    - text: “¡Estoy seguro de que lo harás genial 💪! Lo importante no es la perfección, sino darte la oportunidad de intentarlo”
+    - text: “Perfecto, confío en que puedes hacerlo bien a tu manera 🙌. Recuerda que lo importante es que te sientas cómodo/a con la actividad”
+
+  utter_ofrecer_alternativas:
+    - text: "Entonces te gustaria mirar las otras alternativas que tengo por ahora? si/no"
+
+
+  utter_menu_mostrarAll:
+    - text: |
+        Mira {slot_name} estas son todas las actividades que tengo disponibles:
+        1️⃣ Respiración 4-7-8 (2 min)
+        2️⃣ Escritura terapéutica (10 min)
+        3️⃣ Audio de relajación (5 min)
+        4️⃣ Estiramientos rápidos
+        5️⃣ Bailar tu canción favorita
+        6️⃣ Lista de gratitud
+        7️⃣ Proyecto creativo
+        8️⃣ Compartir algo positivo
+        9️⃣ Meditación corta
+        🔟 Organizar un espacio
+        1️⃣1️⃣ Lectura breve
+        1️⃣2️⃣ Tomar agua
+
+
+  utter_menu_button_mostrarAll:
+    - text: 'Elige una opción:'
+      buttons:
+      - title: 1️⃣ Respiración 4-7-8
+        payload: /int_sel_actividadAll{"ent_numActividad":"1"}
+      - title: 2️⃣ Escritura terapéutica
+        payload: /int_sel_actividadAll{"ent_numActividad":"2"}
+      - title: 3️⃣ Audio de relajación
+        payload: /int_sel_actividadAll{"ent_numActividad":"3"}
+      - title: 4️⃣ Estiramientos rápidos
+        payload: /int_sel_actividadAll{"ent_numActividad":"4"}
+      - title: 5️⃣ Compartir tu alegría
+        payload: /int_sel_actividadAll{"ent_numActividad":"5"}
+      - title: 6️⃣ Bailar 3 canciones
+        payload: /int_sel_actividadAll{"ent_numActividad":"6"}
+      - title: 7️⃣ Empezar un proyecto creativo
+        payload: /int_sel_actividadAll{"ent_numActividad":"7"}
+      - title: 8️⃣ Hacer una lista de gratitud
+        payload: /int_sel_actividadAll{"ent_numActividad":"8"}
+      - title: 9️⃣ Meditación breve
+        payload: /int_sel_actividadAll{"ent_numActividad":"9"}
+      - title: 🔟 Organizar un espacio personal
+        payload: /int_sel_actividadAll{"ent_numActividad":"10"}
+      - title: 11️⃣ Leer algo inspirador
+        payload: /int_sel_actividadAll{"ent_numActividad":"11"}
+      - title: 12️⃣ Hidratación consciente
+        payload: /int_sel_actividadAll{"ent_numActividad":"12"}
+  
+  
+
+  # --------------- ACTIVADES --------------  
+  utter_detalle_respiracion:
+    - text: "🌬️ **Respiración 4-7-8**:\n\nEsta técnica ayuda a calmar la mente y reducir la ansiedad rápidamente. Siéntate derecho, relaja los hombros y coloca las manos sobre tus piernas.\n\nPasos:\n1️⃣ Inspira lentamente por la nariz durante 4 segundos.\n2️⃣ Mantén la respiración durante 7 segundos.\n3️⃣ Exhala despacio por la boca durante 8 segundos.\n4️⃣ Repite 3 veces, sintiendo cómo tu cuerpo se relaja.\n\n🌿 Hazlo a tu ritmo. Al finalizar, notarás más tranquilidad y claridad mental."
+
+  utter_detalle_escritura:
+    - text: "✍️ **Escritura terapéutica**:\n\nEscribir tus pensamientos y emociones ayuda a liberar tensión y organizar tus ideas.\n\nPasos:\n1️⃣ Encuentra un lugar tranquilo y sin distracciones.\n2️⃣ Escribe lo que sientes durante 10 minutos, sin preocuparte por ortografía o estructura.\n3️⃣ Permítete expresar cualquier emoción que surja.\n\n📝 Al terminar, notarás alivio y mayor claridad emocional."
+
+  utter_detalle_audio:
+    - text: "🎧 **Audio de relajación**:\n\nEscuchar sonidos relajantes o meditación guiada puede ayudarte a calmar la mente y reducir estrés.\n\nPasos:\n1️⃣ Busca un audio de meditación guiada o sonidos de la naturaleza.\n2️⃣ Siéntate o recuéstate cómodamente.\n3️⃣ Escucha durante 5 minutos, concentrándote en tu respiración.\n\n🌸 Al finalizar, sentirás calma y relajación."
+
+  utter_detalle_estiramientos:
+    - text: "🤸 **Estiramientos rápidos**:\n\nMover tu cuerpo ayuda a liberar tensión acumulada y mejorar tu energía.\n\nPasos:\n1️⃣ Ponte de pie y relaja los hombros.\n2️⃣ Realiza movimientos suaves de cuello, hombros, brazos y espalda durante 2-3 minutos.\n3️⃣ Respira profundamente mientras te estiras.\n\n✨ Hazlo a tu ritmo. Al finalizar, sentirás más ligereza y bienestar corporal."
+
+  utter_detalle_baile:
+    - text: "💃 **Bailar tu canción favorita**:\n\nBailar mejora tu estado de ánimo y libera endorfinas.\n\nPasos:\n1️⃣ Elige una canción que te guste.\n2️⃣ Muévete a tu ritmo, sin preocuparte por cómo se ve.\n3️⃣ Disfruta de cada movimiento y concéntrate en la música.\n\n🎵 Al terminar, sentirás alegría y energía positiva."
+
+  utter_detalle_gratitud:
+    - text: "🙏 **Lista de gratitud**:\n\nReconocer cosas positivas en tu vida mejora tu bienestar emocional.\n\nPasos:\n1️⃣ Toma papel y lápiz.\n2️⃣ Escribe 3 cosas por las que te sientas agradecido hoy.\n3️⃣ Pueden ser detalles pequeños o grandes logros.\n\n💛 Al finalizar, notarás un cambio positivo en tu enfoque y sensación de calma."
+
+  utter_detalle_proyecto:
+    - text: "🎨 **Proyecto creativo**:\n\nRealizar actividades creativas ayuda a expresar emociones y reducir ansiedad.\n\nPasos:\n1️⃣ Elige una actividad creativa: dibujar, escribir, cocinar, etc.\n2️⃣ Dedica 15 minutos a disfrutar el proceso.\n3️⃣ Concéntrate en tu disfrute, sin presionarte.\n\n🌟 Al finalizar, sentirás satisfacción y relajación."
+
+  utter_detalle_compartir:
+    - text: "💌 **Compartir algo positivo**:\n\nPequeños gestos pueden mejorar tu ánimo y el de los demás.\n\nPasos:\n1️⃣ Piensa en alguien cercano.\n2️⃣ Envía un mensaje amable o de agradecimiento.\n3️⃣ Observa cómo este gesto te hace sentir.\n\n💖 Al finalizar, notarás conexión y bienestar."
+
+  utter_detalle_meditacion:
+    - text: "🧘 **Meditación corta**:\n\nMeditar ayuda a calmar la mente y reducir ansiedad.\n\nPasos:\n1️⃣ Siéntate cómodamente y cierra los ojos.\n2️⃣ Concéntrate en tu respiración durante 3 minutos.\n3️⃣ Observa tus pensamientos sin juzgarlos.\n\n🌸 Al finalizar, notarás claridad mental y tranquilidad."
+
+  utter_detalle_organizar:
+    - text: "📦 **Organizar un espacio**:\n\nUn entorno ordenado puede ayudar a sentir más claridad y control.\n\nPasos:\n1️⃣ Escoge un área pequeña: escritorio, habitación o cajón.\n2️⃣ Ordena y limpia durante unos minutos.\n3️⃣ Respira profundo y observa el cambio.\n\n✨ Al finalizar, sentirás calma y mayor enfoque."
+
+  utter_detalle_leer:
+    - text: "📖 **Lectura breve**:\n\nLeer algo inspirador ayuda a relajar la mente y distraerte de la ansiedad.\n\nPasos:\n1️⃣ Escoge un libro, artículo o cita breve.\n2️⃣ Lee durante unos minutos.\n3️⃣ Concéntrate en el contenido y disfruta de la lectura.\n\n🌿 Al finalizar, sentirás tranquilidad y reflexión positiva."
+
+  utter_detalle_hidratacion:
+    - text: "💧 **Tomar agua**:\n\nPrestar atención a algo sencillo puede ayudarte a estar presente y calmar la mente.\n\nPasos:\n1️⃣ Toma un vaso de agua.\n2️⃣ Bébelo lentamente, prestando atención a cada sorbo.\n3️⃣ Respira profundo mientras lo haces.\n\n💧 Al finalizar, notarás más calma y conciencia de tu cuerpo."
+
+
+
+  utter_pedir_descripcion_emocion:
+    - text: Cuéntame más sobre lo que estás sintiendo. ¿Cómo describirías esta emoción?
+  utter_profundizar_emocion:
+   - text: ¿Cómo describirías lo que sientes?
+  utter_retroalimentacion_emocional:
+    - text: Veo que esto te afecta. ¿Quieres que exploremos juntos una solución?
+
+entities:
+  - ent_emocion
+  - ent_numActividad
+  # - recurso
+
+  #actividades detalladas
+  - ent_ejercicio_actual
+  - ent_actividad
+  - ent_paso_actual
+
+slots:
+  slot_tipo_emocion:
+    type: categorical
+    values:
+    - positivo
+    - negativo
+    - neutro
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: ent_emocion
+
+  slot_numActividad:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: ent_numActividad
+
+
+
+
+  #actividades detalladas
+  slot_ejercicio_actual: #si
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: ent_ejercicio_actual
+      - type: from_intent
+        intent: int_sel_actividad
+        value: "seleccion_ejercicio"
+  
+  slot_paso_actual:
+    type: float
+    initial_value: 0
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: ent_paso_actual
+actions:
+  - action_filtrar_opciones
+  - custom_action_ejecutar_opcion
+  - custom_action_ejecutar_cualquiera
+  - action_mostrar_menu_all
+  - action_ejercicio_detallado
+  - action_ofrecer_actividad
+
+  - action_menu_sel_actividad
+  - action_menu_no_profundizar_actividades

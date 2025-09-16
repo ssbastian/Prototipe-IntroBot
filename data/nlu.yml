@@ -1,33 +1,8 @@
-version: "2.0"
-
+version: "3.1"
 nlu:
-- intent: saludo
+- intent: int_despedirse
   examples: |
-    - Hola
-    - ¿Cómo estás?
-    - Buenas
-    - Hey, Shaoli
-
-- intent: despedida
+    - adios
+- intent: int_expresar_emocion
   examples: |
-    - Adiós
-    - Hasta pronto
-    - Nos vemos luego
-
-- intent: consulta_ayuda
-  examples: |
-    - Me siento solo
-    - No sé cómo empezar una conversación
-    - Me cuesta hablar con los demás
-
-- intent: motivacion
-  examples: |
-    - Necesito motivación
-    - Dime algo inspirador
-    - Me siento desanimado
-
-- intent: consejos_sociales
-  examples: |
-    - ¿Cómo hablo con nuevas personas?
-    - ¿Qué hago si me da ansiedad social?
-    - Quiero mejorar mis habilidades sociales
+    - [feliz]{"entity": "ent_emocion", "value": "positivo"}

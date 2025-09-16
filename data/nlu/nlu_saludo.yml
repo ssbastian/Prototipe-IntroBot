@@ -1,0 +1,171 @@
+version: "3.1"
+
+nlu:
+
+
+#TODO SALUDOS
+- intent: int_dar_nombre
+  examples: |
+    - [andres](ent_person_nombre)
+    - me llamo [daniel](ent_person_nombre)
+    - Soy [Sebastián](ent_person_nombre)
+    - Soy [Daniela](ent_person_nombre)
+    - [Dani](ent_person_nombre)
+    - Soy [Carlos](ent_person_nombre)
+    - Mi nombre es [María](ent_person_nombre)
+    - Puedes decirme [Andrea](ent_person_nombre)
+    - Llámame [Juan](ent_person_nombre)
+    - Hola, soy [Pedro](ent_person_nombre)
+    - Me dicen [Camila](ent_person_nombre)
+    - Me puedes llamar [Luis](ent_person_nombre)
+    - Mi nombre completo es [Sebastián Sánchez](ent_person_nombre)
+    - [Tatiana](ent_person_nombre)
+    - [Isabela](ent_person_nombre)
+    - Puedes decirme [Valeria](ent_person_nombre)
+    - Prefiero que me digas [Sofi](ent_person_nombre)
+    - Me llamo [Fernanda](ent_person_nombre)
+    - Me llamo [Shaoli](ent_person_nombre)
+    - Me llamo [Luna](ent_person_nombre)
+    - Hola, mi nombre es [Paula](ent_person_nombre)
+    - Buenas, soy [Ignacio](ent_person_nombre)
+    - Me conocen como [Pepe](ent_person_nombre)
+    - Puedes llamarme [Rodri](ent_person_nombre)
+    - Todos me dicen [Fede](ent_person_nombre)
+    - Dime [Rafa](ent_person_nombre)
+    - Prefiero que me llames [Gaby](ent_person_nombre)
+    - Eh, soy [Leo](ent_person_nombre)
+    - Me llaman [Nacho](ent_person_nombre)
+    - Hola, puedes llamarme [Martín](ent_person_nombre)
+    - Soy [Alejandro](ent_person_nombre), mucho gusto
+    - Encantado, soy [Santiago](ent_person_nombre)
+    - Yo soy [Nicolás](ent_person_nombre)
+    - ¿Puedes llamarme [Mati](ent_person_nombre)?
+    - Creo que no me presenté, soy [Ana](ent_person_nombre)
+    - Perdona, no dije mi nombre, soy [Julián](ent_person_nombre)
+    - Me llamo [Rocío](ent_person_nombre), un placer
+    - Hola, soy [Kevin](ent_person_nombre), ¿y tú?
+    - Quiero que me digas [Cris](ent_person_nombre)
+    - Oye, puedes llamarme [Marcos](ent_person_nombre)
+    - Mi nombre de pila es [Roberto](ent_person_nombre)
+    - Mis amigos me dicen [Lucho](ent_person_nombre)
+    - Me conocen por [Vane](ent_person_nombre)
+    - Prefiero [Majo](ent_person_nombre)
+    - Soy [Fran](ent_person_nombre), pero dime como quieras
+
+
+- lookup: ent_person_nombre
+  examples: |
+    - Sebastián
+    - Matias
+    - Daniela
+    - Isa
+    - Brayan
+    - nicolas
+    - jimmy
+    - nahir
+    - jhon
+    - luis
+    - jhonatan
+    - elian
+    - angel
+    - juan
+    - michel
+    - yannis
+    - kevin
+    - fredy
+    - franklin
+    - daniel
+    - jhoan
+    - jheison
+    - santiago
+    - Briantt
+    - Carlos
+    - Franci
+    - María
+    - Jose
+    - Andrea
+    - Juan
+    - Pedro
+    - Camila
+    - Luis
+    - Tatiana
+    - Isabela
+    - Gabriel
+    - Lucía
+    - Fernanda
+    - Valeria
+    - Pablo
+    - Rafael
+    - Carla
+    - Memo
+    - Sofi
+    - Frank
+    - Felipe
+    - Miguel Ángel
+    - Ricardo
+    - Natalia
+    - Pedro
+    - Angeline
+    - Jimena
+    - Ximena
+    - Angie
+    - Luis
+    - Octavio
+    - Elisa
+    - Yesid
+    - Cesar
+    - Andres
+    - María
+    - Mateo
+    - Yesid
+
+
+- intent: int_saludo
+  examples: |
+    - Hola
+    - Hola, ¿cómo estás?
+    - Buenas tardes
+    - Buen día
+    - Buenas noches
+    - ¿Qué tal?
+    - Hey
+    - Holi
+    - ¡Qué gusto saludarte!
+    - Hola hola
+    - Buenas
+    - Buenas, ¿todo bien?
+    - ¡Hey! ¿Qué hay?
+    - Saludos
+    - ¡Buenas! ¿Cómo te va?
+    - ¡Ey!
+    - Hola de nuevo
+    - Hola, bot
+    - Buenas, ¿me puedes ayudar?
+
+- intent: int_expresar_emocion
+  examples: |
+    - 😄 [feliz](ent_emocion)
+    - [feliz](ent_emocion)
+    - 😌 [tranquilo](ent_emocion)
+    - [tranquilo](ent_emocion)
+    - 😍 [emocionado](ent_emocion)
+    - [emocionado](ent_emocion)
+    - 😢 [triste](ent_emocion)
+    - [triste](ent_emocion)
+    - 😟 [ansioso](ent_emocion)
+    - [ansioso](ent_emocion)
+    - 😡 [enojado](ent_emocion)
+    - [enojado](ent_emocion)
+    - 😔 [inseguro](ent_emocion)
+    - [inseguro](ent_emocion)
+    - 😴 [cansado](ent_emocion)
+    - [cansado](ent_emocion)
+    - 😐 [neutral](ent_emocion)
+    - [neutral](ent_emocion)
+
+
+
+
+
+
+

@@ -1,12 +1,68 @@
-version: "2.0"
 
+version: "3.1"
 stories:
-- story: usuario busca motivacion
+- story: interactive_story_1
   steps:
-  - intent: motivacion
-  - action: action_motivacion_personalizada
+  - intent: int_despedirse
+  - action: action_verificar_feedback
+  - slot_was_set:
+    - slot_feedback_pendiente: true
+  - action: utter_ofrecer_feedback
+  - intent: int_si_despedida
+  - action: utter_pregunta_1
+  - intent: int_respuesta_escuesta
+    entities:
+    - ent_mejora: si
+  - slot_was_set:
+    - slot_mejora: si
+  - action: utter_pregunta_2
+  - intent: int_respuesta_escuesta
+    entities:
+    - ent_satisfaccion: '4'
+  - slot_was_set:
+    - slot_satisfaccion: '4'
+  - action: utter_pregunta_3
+  - intent: int_respuesta_escuesta
+    entities:
+    - ent_recomendacion: si
+  - slot_was_set:
+    - slot_recomendacion: si
+  - action: utter_agradecimiento
+  - action: utter_bot_se_despide
+  - action: action_deactivate_feedback
+  - slot_was_set:
+    - slot_feedback_pendiente: false
+  - slot_was_set:
+    - slot_encuesta_completada: true
 
-- story: usuario quiere mejorar habilidades sociales
-  steps:
-  - intent: consejos_sociales
-  - action: utter_consejos_sociales
+# - story: interactive_story_2
+#   steps:
+#   - intent: int_expresar_emocion
+#     entities:
+#     - ent_emocion: positivo
+#   - slot_was_set:
+#     - slot_emocion: positivo
+#   - slot_was_set:
+#     - slot_tipo_emocion: positivo
+#   - action: action_ofrecer_actividad
+#   - intent: int_no_actividades
+#   - action: utter_respetar_decision
+#   - action: utter_menu_list_alternativa
+#   - action: action_menu_alternativa
+#   - intent: int_menu_sel_alternativa
+#     entities:
+#     - ent_tipo_alternativa: recursos
+#   - slot_was_set:
+#     - slot_tipo_alternativa: recursos
+#   - action: action_manejar_alternativas
+#   - slot_was_set:
+#     - slot_tipo_alternativa: null
+#   - slot_was_set:
+#     - slot_contexto: null
+#   - action: action_menu_recurso
+#   - intent: int_menu_sel_recurso
+#     entities:
+#     - ent_tipo_recurso: respiracion
+#   - slot_was_set:
+#     - slot_tipo_recurso: respiracion
+#   - action: action_menu_no_profundizar_actividades

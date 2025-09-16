@@ -1,36 +1,566 @@
-version: "2.0"
-
+version: '3.1'
 intents:
-  - saludo
-  - despedida
-  - consulta_ayuda
-  - motivacion
-  - consejos_sociales
-
+- int_actividades_mostrarAll
+- int_afirmar_saludo
+- int_dar_nombre
+- int_despedirse
+- int_elegir_activ_completa
+- int_entendido_saludo
+- int_expresar_emocion
+- int_finalizar_ejercicio
+- int_intentar_solo
+- int_llamar_menu_alternativas
+- int_menu_sel_alternativa
+- int_menu_sel_hablar_de_ti
+- int_menu_sel_recurso
+- int_negar_saludo
+- int_no_actividades
+- int_no_despedida
+- int_paso_listo
+- int_pedir_escucha
+- int_respuesta_escuesta
+- int_saludo
+- int_sel_actividad
+- int_sel_actividadAll
+- int_si_actividades
+- int_si_despedida
+- int_solicitar_guia
+entities:
+- ent_emocion
+- ent_tipo_alternativa
+- ent_tipo_recurso
+- ent_recomendacion
+- ent_satisfaccion
+- ent_mejora
+- ent_numActividad
+- ent_person_nombre
+- ent_ejercicio_actual
+- ent_actividad
+- ent_paso_actual
+- ent_actividades_all
+slots:
+  slot_usuario_nuevo:
+    type: bool
+    initial_value: true
+    influence_conversation: true
+    mappings:
+    - type: custom
+  slot_name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: ent_person_nombre
+    influence_conversation: true
+  slot_emocion:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: ent_emocion
+  ultimo_tema:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: custom
+  slot_feedback_pendiente:
+    type: bool
+    initial_value: false
+    mappings:
+    - type: custom
+  slot_ultima_encuesta:
+    type: float
+    influence_conversation: true
+    mappings:
+    - type: custom
+  slot_mejora:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: ent_mejora
+      intent: int_respuesta_escuesta
+  slot_satisfaccion:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: ent_satisfaccion
+      intent: int_respuesta_escuesta
+  slot_recomendacion:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: ent_recomendacion
+      intent: int_respuesta_escuesta
+  slot_encuesta_completada:
+    type: bool
+    initial_value: false
+    influence_conversation: false
+    mappings:
+    - type: custom
+  slot_tipo_emocion:
+    type: categorical
+    values:
+    - positivo
+    - negativo
+    - neutro
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: ent_emocion
+  slot_numActividad:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: ent_numActividad
+  slot_ejercicio_actual:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: ent_ejercicio_actual
+    - type: from_intent
+      intent: int_sel_actividad
+      value: seleccion_ejercicio
+  slot_paso_actual:
+    type: float
+    initial_value: 0
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: ent_paso_actual
+  slot_tipo_alternativa:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: ent_tipo_alternativa
+      intent: int_menu_sel_alternativa
+  slot_tipo_recurso:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: ent_tipo_recurso
+      intent: int_menu_sel_recurso
+  slot_contexto:
+    type: text
+    influence_conversation: true
+    initial_value: null
+    mappings:
+    - type: custom
+  slot_actividades_all:
+    type: text
+    initial_value: 'false'
+    mappings:
+    - type: from_entity
+      entity: ent_actividades_all
+      intent: int_actividades_mostrarAll
 responses:
-  utter_greet:
-    - text: "¡Hola! ¿Cómo te sientes hoy?"
-    - text: "¡Hey! ¿Cómo puedo ayudarte?"
+  utter_botones:
+  - text: Hola estos son los botonoes
+  utter_nombre_guardado:
+  - text: ¡Perfecto, {slot_name}! Ya te tengo registrado.
+  - text: ¡Encantado de conocerte, {slot_name}!
+  - text: Gracias por compartir tu nombre, {slot_name}. Ahora puedo dirigirme a ti como corresponde.
+  - text: ¡Genial, {slot_name}! Nombre guardado en mi memoria de robot.
+  - text: ¡Listo, {slot_name}! Espero no olvidarlo… aunque soy un bot, así que tengo buena memoria.
+  - text: ¡Excelente, {slot_name}! Ahora ya somos oficialmente conocidos.
+  utter_presentarse:
+  - text: Hola, soy un bot🤖 prototipo creado para apoyar a personas introvertidas con sus habilidades comunicacionales especificamente en situaciones sociales. Estoy aquí para escucharte y ofrecerte consejos útiles. 😊
+  utter_pedir_nombre:
+  - text: ¿cómo te llamas?
+  utter_saludo_con_nombre:
+  - text: ¡Hola de nuevo, {slot_name}! Es un gusto seguir conversando contigo.
+  - text: ¡Me alegra verte otra vez, {slot_name}! Gracias por regresar.
+  - text: ¡Bienvenido/a de nuevo, {slot_name}! Siempre es un placer acompañarte.
+  - text: ¡Qué bueno volver a coincidir contigo, {slot_name}! Me alegra que sigas aquí.
+  - text: ¡Hola, {slot_name}! Me alegra que sigas avanzando paso a paso.
+  - text: ¡De nuevo por aquí, {slot_name}! Me encanta que sigas explorando estas ideas.
+  - text: ¡Hola otra vez, {slot_name}! Cada conversación suma a tu progreso.
+  - text: ¡Hola, {slot_name}! Siempre es valioso tomarte este tiempo para ti.
+  utter_solicitar_emocion_libre:
+  - text: Claro, {slot_name} cuéntame con tus propias palabras cómo te sientes.
+  utter_pregunta_introversion:
+  - text: oye ¿Sabes qué es la introversión?
+    buttons:
+    - title: Sí
+      payload: /int_afirmar_saludo
+    - title: No
+      payload: /int_negar_saludo
+  utter_explicar_introversion_si:
+  - text: '¡Genial! Igual te lo explico brevemente: la introversión es una forma natural de ser. Disfrutas más de la calma y puedes sentirte agotado en situaciones sociales intensas. ¿Así entendido?'
+    buttons:
+    - title: Entendido
+      payload: /int_entendido_saludo
+  utter_explicar_introversion_no:
+  - text: 'No pasa nada, te lo explico brevemente: la introversión es una forma natural de ser. Disfrutas más de la calma y puedes sentirte agotado en situaciones sociales intensas. ¿Así entendido?'
+    buttons:
+    - title: Entendido
+      payload: /int_entendido_saludo
+  utter_actividades_intro:
+  - text: Estupendo, tengo una serie de tecnicas de manejo emocional y actividades distractoras que espero te ayuden a sentirte mejor. ¿Listo?
+    buttons:
+    - title: Entendido
+      payload: /int_entendido_saludo
+  utter_default:
+  - text: Lo siento, no entendí bien eso. ¿Podrías reformularlo o preguntarme algo relacionado con la ansiedad social?
+  utter_ofrecer_feedback:
+  - text: 📊📝 {slot_name} antes de irte, ¿te gustaría responder 3 preguntas rápidas sobre tu experiencia? (sí/no)
+    buttons:
+    - title: ✅ Sí, dar feedback
+      payload: /int_si_despedida
+    - title: ❌ No, gracias
+      payload: /int_no_despedida
+  utter_pregunta_1:
+  - text: ➡️ ¿Te sentiste mejor despues de la interacción con el bot?
+    buttons:
+    - title: Sí ✅
+      payload: /int_respuesta_escuesta{{"ent_mejora":"si"}}
+    - title: No ❌
+      payload: /int_respuesta_escuesta{{"ent_mejora":"no"}}
+  utter_pregunta_2:
+  - text: '➡️ Del 1 al 5, ¿cómo calificarías tu experiencia? (1: Mala, 5: Excelente)'
+    buttons:
+    - title: 1 ⭐
+      payload: '/int_respuesta_escuesta{{"ent_satisfaccion": "1"}}'
+    - title: 2 ⭐
+      payload: '/int_respuesta_escuesta{{"ent_satisfaccion": "2"}}'
+    - title: 3 ⭐
+      payload: '/int_respuesta_escuesta{{"ent_satisfaccion": "3"}}'
+    - title: 4 ⭐
+      payload: '/int_respuesta_escuesta{{"ent_satisfaccion": "4"}}'
+    - title: 5 ⭐
+      payload: '/int_respuesta_escuesta{{"ent_satisfaccion": "5"}}'
+  utter_pregunta_3:
+  - text: ➡️ ¿Recomendarías este bot a alguien más?
+    buttons:
+    - title: Sí ✅
+      payload: '/int_respuesta_escuesta{{"ent_recomendacion": "si"}}'
+    - title: No ❌
+      payload: '/int_respuesta_escuesta{{"ent_recomendacion": "no"}}'
+  utter_agradecimiento:
+  - text: ¡Gracias por tu feedback! 💙
+  utter_bot_se_despide:
+  - text: ¡Hasta luego! Cuídate mucho.
+  utter_TEST:
+  - text: Esto es una prueba
+  utter_emocion_prueba:
+  - text: elegiste emocion {slot_tipo_emocion}.
+  utter_opcion_prueba:
+  - text: elegiste opcion {slot_numActividad}.
+  utter_emocion_negativa:
+  - text: elegiste emocion negativa.
+  utter_emocion_positiva:
+  - text: elegiste emocion positiva.
+  utter_emocion_neutra:
+  - text: elegiste emocion neutra.
+  utter_respetar_decision:
+  - text: Esta bien {slot_name} respeto tu desición y si en algun momento quieres realizar alguna actividad solo dimelo 😀.
+  utter_menu_list_actividadesN:
+  - text: |
+      Opcones para momentos dificiles:
+      1️⃣ Respiración 4-7-8 (2 min)
+      2️⃣ Escritura terapéutica (10 min)
+      3️⃣ Audio de relajación (5 min)
+      4️⃣ Estiramientos rápidos
+      5️⃣ Todas las actividades
+      ¿Dime que número te interesa?
+  utter_menu_list_actividadesP:
+  - text: |
+      ¡Aprovecha esta energía!:
+      1️⃣ Compartir tu alegría con alguien especial
+      2️⃣ Bailar 3 canciones alegres
+      3️⃣ Empezar un proyecto creativo
+      4️⃣ Hacer una lista de gratitud
+      5️⃣ Todas las actividades
+      ¿Dime que número te interesa?
+  utter_menu_list_actividadesNE:
+  - text: |
+      Para momentos tranquilos:
+      1️⃣ Meditación breve (2-5 min)
+      2️⃣ Organizar un espacio personal
+      3️⃣ Leer algo inspirador
+      4️⃣ Hidratación consciente
+      5️⃣ Todas las actividades
+  utter_menu_sel_actividad:
+  - text: 'Elige una opción:'
+    buttons:
+    - title: Botón 1
+      payload: /int_sel_actividad{{"ent_numActividad":"1"}}
+    - title: Botón 2
+      payload: /int_sel_actividad{{"ent_numActividad":"2"}}
+    - title: Botón 3
+      payload: /int_sel_actividad{{"ent_numActividad":"3"}}
+    - title: Botón 4
+      payload: /int_sel_actividad{{"ent_numActividad":"4"}}
+    - title: Ver todas las actividades
+      payload: '/int_actividades_mostrarAll{{"ent_actividades_all": "false"}}'
+  utter_profundizar_actividades:
+  - text: ¿Necesitas una guía paso a paso o prefieres intentarlo por tu cuenta?
+    buttons:
+    - title: ➡️Guía paso a paso
+      payload: /int_solicitar_guia
+    - title: ➡️Intentarlo por mi cuenta
+      payload: /int_intentar_solo
+  utter_no_detallar_ejercicios:
+  - text: Si en algún momento quieres que te guíe, solo dímelo y con gusto te ayudo
+  - text: “¡Estoy seguro de que lo harás genial 💪! Lo importante no es la perfección, sino darte la oportunidad de intentarlo”
+  - text: “Perfecto, confío en que puedes hacerlo bien a tu manera 🙌. Recuerda que lo importante es que te sientas cómodo/a con la actividad”
+  utter_ofrecer_alternativas:
+  - text: Entonces te gustaria mirar las otras alternativas que tengo por ahora? si/no
+  utter_menu_mostrarAll:
+  - text: |
+      Mira {slot_name} estas son todas las actividades que tengo disponibles:
+      1️⃣ Respiración 4-7-8 (2 min)
+      2️⃣ Escritura terapéutica (10 min)
+      3️⃣ Audio de relajación (5 min)
+      4️⃣ Estiramientos rápidos
+      5️⃣ Bailar tu canción favorita
+      6️⃣ Lista de gratitud
+      7️⃣ Proyecto creativo
+      8️⃣ Compartir algo positivo
+      9️⃣ Meditación corta
+      🔟 Organizar un espacio
+      1️⃣1️⃣ Lectura breve
+      1️⃣2️⃣ Tomar agua
+  utter_menu_button_mostrarAll:
+  - text: 'Elige una opción:'
+    buttons:
+    - title: 1️⃣ Respiración 4-7-8
+      payload: /int_sel_actividadAll{"ent_numActividad":"1"}
+    - title: 2️⃣ Escritura terapéutica
+      payload: /int_sel_actividadAll{"ent_numActividad":"2"}
+    - title: 3️⃣ Audio de relajación
+      payload: /int_sel_actividadAll{"ent_numActividad":"3"}
+    - title: 4️⃣ Estiramientos rápidos
+      payload: /int_sel_actividadAll{"ent_numActividad":"4"}
+    - title: 5️⃣ Compartir tu alegría
+      payload: /int_sel_actividadAll{"ent_numActividad":"5"}
+    - title: 6️⃣ Bailar 3 canciones
+      payload: /int_sel_actividadAll{"ent_numActividad":"6"}
+    - title: 7️⃣ Empezar un proyecto creativo
+      payload: /int_sel_actividadAll{"ent_numActividad":"7"}
+    - title: 8️⃣ Hacer una lista de gratitud
+      payload: /int_sel_actividadAll{"ent_numActividad":"8"}
+    - title: 9️⃣ Meditación breve
+      payload: /int_sel_actividadAll{"ent_numActividad":"9"}
+    - title: 🔟 Organizar un espacio personal
+      payload: /int_sel_actividadAll{"ent_numActividad":"10"}
+    - title: 11️⃣ Leer algo inspirador
+      payload: /int_sel_actividadAll{"ent_numActividad":"11"}
+    - title: 12️⃣ Hidratación consciente
+      payload: /int_sel_actividadAll{"ent_numActividad":"12"}
+  utter_detalle_respiracion:
+  - text: |-
+      🌬️ **Respiración 4-7-8**:
 
-  utter_goodbye:
-    - text: "Nos vemos pronto. ¡Cuídate!"
-    - text: "Adiós, recuerda que siempre puedes volver."
+      Esta técnica ayuda a calmar la mente y reducir la ansiedad rápidamente. Siéntate derecho, relaja los hombros y coloca las manos sobre tus piernas.
 
-  utter_ayuda:
-    - text: "Entiendo cómo te sientes. No estás solo, estoy aquí para escucharte."
-    - text: "Dime más sobre lo que te preocupa, te ayudaré lo mejor que pueda."
+      Pasos:
+      1️⃣ Inspira lentamente por la nariz durante 4 segundos.
+      2️⃣ Mantén la respiración durante 7 segundos.
+      3️⃣ Exhala despacio por la boca durante 8 segundos.
+      4️⃣ Repite 3 veces, sintiendo cómo tu cuerpo se relaja.
 
-  utter_motivacion:
-    - text: "No te rindas. Cada pequeño paso cuenta. 🌟"
-    - text: "Eres más fuerte de lo que crees. ¡Sigue adelante! 💪"
+      🌿 Hazlo a tu ritmo. Al finalizar, notarás más tranquilidad y claridad mental.
+  utter_detalle_escritura:
+  - text: |-
+      ✍️ **Escritura terapéutica**:
 
-  utter_consejos_sociales:
-    - text: "Cuando hables con alguien nuevo, empieza con algo sencillo como 'Hola, ¿cómo ha estado tu día?'."
-    - text: "No te preocupes demasiado por lo que los demás piensen. Sé tú mismo."
+      Escribir tus pensamientos y emociones ayuda a liberar tensión y organizar tus ideas.
 
+      Pasos:
+      1️⃣ Encuentra un lugar tranquilo y sin distracciones.
+      2️⃣ Escribe lo que sientes durante 10 minutos, sin preocuparte por ortografía o estructura.
+      3️⃣ Permítete expresar cualquier emoción que surja.
+
+      📝 Al terminar, notarás alivio y mayor claridad emocional.
+  utter_detalle_audio:
+  - text: |-
+      🎧 **Audio de relajación**:
+
+      Escuchar sonidos relajantes o meditación guiada puede ayudarte a calmar la mente y reducir estrés.
+
+      Pasos:
+      1️⃣ Busca un audio de meditación guiada o sonidos de la naturaleza.
+      2️⃣ Siéntate o recuéstate cómodamente.
+      3️⃣ Escucha durante 5 minutos, concentrándote en tu respiración.
+
+      🌸 Al finalizar, sentirás calma y relajación.
+  utter_detalle_estiramientos:
+  - text: |-
+      🤸 **Estiramientos rápidos**:
+
+      Mover tu cuerpo ayuda a liberar tensión acumulada y mejorar tu energía.
+
+      Pasos:
+      1️⃣ Ponte de pie y relaja los hombros.
+      2️⃣ Realiza movimientos suaves de cuello, hombros, brazos y espalda durante 2-3 minutos.
+      3️⃣ Respira profundamente mientras te estiras.
+
+      ✨ Hazlo a tu ritmo. Al finalizar, sentirás más ligereza y bienestar corporal.
+  utter_detalle_baile:
+  - text: |-
+      💃 **Bailar tu canción favorita**:
+
+      Bailar mejora tu estado de ánimo y libera endorfinas.
+
+      Pasos:
+      1️⃣ Elige una canción que te guste.
+      2️⃣ Muévete a tu ritmo, sin preocuparte por cómo se ve.
+      3️⃣ Disfruta de cada movimiento y concéntrate en la música.
+
+      🎵 Al terminar, sentirás alegría y energía positiva.
+  utter_detalle_gratitud:
+  - text: |-
+      🙏 **Lista de gratitud**:
+
+      Reconocer cosas positivas en tu vida mejora tu bienestar emocional.
+
+      Pasos:
+      1️⃣ Toma papel y lápiz.
+      2️⃣ Escribe 3 cosas por las que te sientas agradecido hoy.
+      3️⃣ Pueden ser detalles pequeños o grandes logros.
+
+      💛 Al finalizar, notarás un cambio positivo en tu enfoque y sensación de calma.
+  utter_detalle_proyecto:
+  - text: |-
+      🎨 **Proyecto creativo**:
+
+      Realizar actividades creativas ayuda a expresar emociones y reducir ansiedad.
+
+      Pasos:
+      1️⃣ Elige una actividad creativa: dibujar, escribir, cocinar, etc.
+      2️⃣ Dedica 15 minutos a disfrutar el proceso.
+      3️⃣ Concéntrate en tu disfrute, sin presionarte.
+
+      🌟 Al finalizar, sentirás satisfacción y relajación.
+  utter_detalle_compartir:
+  - text: |-
+      💌 **Compartir algo positivo**:
+
+      Pequeños gestos pueden mejorar tu ánimo y el de los demás.
+
+      Pasos:
+      1️⃣ Piensa en alguien cercano.
+      2️⃣ Envía un mensaje amable o de agradecimiento.
+      3️⃣ Observa cómo este gesto te hace sentir.
+
+      💖 Al finalizar, notarás conexión y bienestar.
+  utter_detalle_meditacion:
+  - text: |-
+      🧘 **Meditación corta**:
+
+      Meditar ayuda a calmar la mente y reducir ansiedad.
+
+      Pasos:
+      1️⃣ Siéntate cómodamente y cierra los ojos.
+      2️⃣ Concéntrate en tu respiración durante 3 minutos.
+      3️⃣ Observa tus pensamientos sin juzgarlos.
+
+      🌸 Al finalizar, notarás claridad mental y tranquilidad.
+  utter_detalle_organizar:
+  - text: |-
+      📦 **Organizar un espacio**:
+
+      Un entorno ordenado puede ayudar a sentir más claridad y control.
+
+      Pasos:
+      1️⃣ Escoge un área pequeña: escritorio, habitación o cajón.
+      2️⃣ Ordena y limpia durante unos minutos.
+      3️⃣ Respira profundo y observa el cambio.
+
+      ✨ Al finalizar, sentirás calma y mayor enfoque.
+  utter_detalle_leer:
+  - text: |-
+      📖 **Lectura breve**:
+
+      Leer algo inspirador ayuda a relajar la mente y distraerte de la ansiedad.
+
+      Pasos:
+      1️⃣ Escoge un libro, artículo o cita breve.
+      2️⃣ Lee durante unos minutos.
+      3️⃣ Concéntrate en el contenido y disfruta de la lectura.
+
+      🌿 Al finalizar, sentirás tranquilidad y reflexión positiva.
+  utter_detalle_hidratacion:
+  - text: |-
+      💧 **Tomar agua**:
+
+      Prestar atención a algo sencillo puede ayudarte a estar presente y calmar la mente.
+
+      Pasos:
+      1️⃣ Toma un vaso de agua.
+      2️⃣ Bébelo lentamente, prestando atención a cada sorbo.
+      3️⃣ Respira profundo mientras lo haces.
+
+      💧 Al finalizar, notarás más calma y conciencia de tu cuerpo.
+  utter_pedir_descripcion_emocion:
+  - text: Cuéntame más sobre lo que estás sintiendo. ¿Cómo describirías esta emoción?
+  utter_profundizar_emocion:
+  - text: ¿Cómo describirías lo que sientes?
+  utter_retroalimentacion_emocional:
+  - text: Veo que esto te afecta. ¿Quieres que exploremos juntos una solución?
+  utter_menu_list_alternativa:
+  - text: |
+      Tengo estas alternativas disponibles para ti:
+      1️⃣ Hablar de cómo te sientes
+      2️⃣ Recibir algún recurso
+      3️⃣ Terminar la conversación
+      ¿Qué número te interesa? dime
+  utter_usuario_se_despiede:
+  - text: 👋 ¡Adiós! Quiero terminar la sesión
+  utter_menu_list_recurso:
+  - text: |
+      Mirá tengo estos recursos disponibles para ti:
+      1️⃣ Meditación guiada (5 min)
+      2️⃣ Ejercicios de respiración
+      3️⃣ Artículo sobre manejo emocional
+  utter_preguntar_feedback:
+  - text: ¿Te gustaría que te enviara un recurso adicional o tienes alguna otra pregunta?
+  utter_iniciar_escucha:
+  - text: |
+      Entiendo que te has estado sintiendo.  
+      Me gustaría escucharte un poco más...  
+      ¿Quieres contarme qué ha pasado últimamente o qué ha hecho que te sientas así?
+  utter_cerrar_escucha:
+  - text: |
+      Gracias por compartirlo conmigo.  
+      ¿Quieres que ahora te sugiera alguna actividad, o prefieres terminar por hoy?
 actions:
-  - action_motivacion_personalizada
-
+- action_manejar_alternativas
+- action_menu_no_profundizar_actividades
+- utter_respetar_decision
+- utter_menu_list_alternativa
+- action_ofrecer_actividad
+- action_menu_recurso
+- action_menu_alternativa
+- utter_agradecimiento
+- utter_pregunta_3
+- utter_pregunta_2
+- utter_bot_se_despide
+- utter_pregunta_1
+- action_verificar_feedback
+- action_deactivate_feedback
+- utter_ofrecer_feedback
+- action_filtrar_opciones
+- custom_action_ejecutar_opcion
+- action_menu_sel_actividad
+- utter_profundizar_actividades
+- utter_pedir_nombre
+- utter_pregunta_introversion
+- action_guardar_nombre
+- utter_actividades_intro
+- action_explicar_introversion
+- utter_presentarse
+- action_preguntar_emocion
+- action_delay_pequeno
+- action_delay_medio
+- action_delay_grande
+- action_preguntar_comfort_con_delay
+- custom_action_ejecutar_cualquiera
+- action_mostrar_menu_all
+- action_ejercicio_detallado
+- action_entrega_recurso_sel
+- action_responder_escucha_activa
 session_config:
-  session_expiration_time: 60
+  session_expiration_time: 20
   carry_over_slots_to_new_session: true

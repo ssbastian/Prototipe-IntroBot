@@ -1,0 +1,152 @@
+version: "3.1"
+
+nlu:
+
+
+
+- intent: int_expresar_emocion
+  examples: |
+    - me siento [feliz](ent_emocion)
+    - estoy [contento](ent_emocion)
+    - estoy [alegre](ent_emocion)
+    - me encuentro [animado](ent_emocion)
+    - estoy [deprimido](ent_emocion)
+    - me siento [triste](ent_emocion)
+    - estoy [frustrado](ent_emocion)
+    - me siento [enojado](ent_emocion)
+    - estoy [neutral](ent_emocion)
+    - me siento [indiferente](ent_emocion)
+    - mi estado es [regular](ent_emocion)
+    - hoy estoy [optimista](ent_emocion)
+    - me siento [relajado](ent_emocion)
+    - estoy [estresado](ent_emocion)
+    - me siento [cansado](ent_emocion)
+    - estoy [molesto](ent_emocion)
+    - me siento [eufórico](ent_emocion)
+    - estoy [equilibrado](ent_emocion)
+    - me siento [normal](ent_emocion)
+    - estoy [ansioso](ent_emocion)
+
+# Definición de sinónimos (normalización a categorías)
+- synonym: positivo
+  examples: |
+    - feliz
+    - contento
+    - alegre
+    - relajado
+    - animado
+    - optimista
+    - energético
+    - eufórico
+    - emocionado
+    - tranquilo
+
+- synonym: negativo
+  examples: |
+    - deprimido
+    - cansado
+    - frustrado
+    - triste
+    - enojado
+    - ansioso
+    - estresado
+    - molesto
+    - inseguro
+
+- synonym: neutro
+  examples: |
+    - neutral
+    - indiferente
+    - regular
+    - equilibrado
+    - normal
+    - promedio
+  
+- intent: int_si_actividades
+  examples: |
+    - sí, quiero actividades
+    - sí, muéstrame actividades
+    - claro, me interesan las actividades
+    - por supuesto, actividades por favor
+    - sí, actividades
+    - actividades sí
+    - quiero ver actividades
+    - me gustaría actividades
+    - muestra las actividades
+    - dame actividades
+
+- intent: int_no_actividades  
+  examples: |
+    - no quiero actividades
+    - no, sin actividades
+    - prefiero no hacer actividades
+    - actividades no
+    - no gracias, sin actividades
+    - cancelar actividades
+    - no me interesan actividades
+    - paso de actividades
+    - otra cosa, no actividades
+
+ 
+#verificar si se puede eliminar este intent
+- intent: int_sel_actividad
+  examples: |
+    - [1](ent_numActividad)
+    - [uno](ent_numActividad)
+    - [la primera](ent_numActividad)
+    - [2](ent_numActividad)
+    - [dos](ent_numActividad)
+    - [la segunda](ent_numActividad)
+    - [3](ent_numActividad)
+    - [tres](ent_numActividad)
+    - [la tercera](ent_numActividad)
+    - [4](ent_numActividad)
+    - [cuatro](ent_numActividad)
+    - [la cuarta](ent_numActividad)
+
+
+- intent: int_elegir_activ_completa
+  examples: |
+    - [respiracion](ent_ejercicio_actual)
+    - quiero hacer ejercicios de [estiramientos](ent_ejercicio_actual)
+    - podríamos hacer algo de [meditacion](ent_ejercicio_actual)
+    - [escritura](ent_ejercicio_actual)
+    - [visualizacion](ent_ejercicio_actual)
+    - [caminar](ent_ejercicio_actual)
+    - [musica](ent_ejercicio_actual)
+    - [gratitud](ent_ejercicio_actual)
+    - [lectura](ent_ejercicio_actual)
+    - [afirmaciones](ent_ejercicio_actual)
+    - [dibujar](ent_ejercicio_actual)
+    - [juego](ent_ejercicio_actual)
+- intent: int_paso_listo
+  examples: |
+    - listo
+    - ya
+    - terminado
+    - siguiente
+    - continuemos
+    - hecho
+- intent: int_finalizar_ejercicio
+  examples: |
+    - terminé
+    - ya acabé
+    - listo
+    - finalizado
+    - eso es todo
+
+- intent: solicitar_guia
+  examples: |
+    - quiero la guía
+    - dame el paso a paso
+    - guía paso a paso
+    - necesito ayuda
+    - muéstrame la guía
+
+- intent: intentar_solo
+  examples: |
+    - lo intento por mi cuenta
+    - prefiero hacerlo solo
+    - intentaré yo mismo
+    - sin guía
+    - quiero hacerlo solo

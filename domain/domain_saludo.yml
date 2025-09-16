@@ -1,0 +1,120 @@
+version: "3.1"
+
+intents:
+  #TODO SALUDO
+  - int_saludo
+  - int_dar_nombre
+  - int_expresar_emocion
+
+  - int_afirmar_saludo
+  - int_negar_saludo
+  - int_entendido_saludo
+
+entities:
+  - ent_person_nombre
+  - ent_emocion
+
+slots:
+  slot_usuario_nuevo:
+    type: bool
+    initial_value: true
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+  slot_name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: ent_person_nombre
+    influence_conversation: true
+
+  slot_emocion:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: ent_emocion
+
+  ultimo_tema:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+responses:
+  utter_botones:
+    - text: "Hola estos son los botonoes"
+
+  utter_nombre_guardado:
+    - text: "¡Perfecto, {slot_name}! Ya te tengo registrado."
+    - text: "¡Encantado de conocerte, {slot_name}!"
+    - text: "Gracias por compartir tu nombre, {slot_name}. Ahora puedo dirigirme a ti como corresponde."
+    - text: "¡Genial, {slot_name}! Nombre guardado en mi memoria de robot."
+    - text: "¡Listo, {slot_name}! Espero no olvidarlo… aunque soy un bot, así que tengo buena memoria."
+    - text: "¡Excelente, {slot_name}! Ahora ya somos oficialmente conocidos."
+
+  utter_presentarse:
+    - text: "Hola, soy un bot🤖 prototipo creado para apoyar a personas introvertidas con sus habilidades comunicacionales especificamente en situaciones sociales. Estoy aquí para escucharte y ofrecerte consejos útiles. 😊"
+  utter_pedir_nombre:
+    - text: "¿cómo te llamas?"
+
+  utter_saludo_con_nombre:
+    - text: "¡Hola de nuevo, {slot_name}! Es un gusto seguir conversando contigo."
+    - text: "¡Me alegra verte otra vez, {slot_name}! Gracias por regresar."
+    - text: "¡Bienvenido/a de nuevo, {slot_name}! Siempre es un placer acompañarte."
+    - text: "¡Qué bueno volver a coincidir contigo, {slot_name}! Me alegra que sigas aquí."
+    - text: "¡Hola, {slot_name}! Me alegra que sigas avanzando paso a paso."
+    - text: "¡De nuevo por aquí, {slot_name}! Me encanta que sigas explorando estas ideas."
+    - text: "¡Hola otra vez, {slot_name}! Cada conversación suma a tu progreso."
+    - text: "¡Hola, {slot_name}! Siempre es valioso tomarte este tiempo para ti."
+
+  utter_solicitar_emocion_libre:
+    - text: "Claro, {slot_name} cuéntame con tus propias palabras cómo te sientes."
+
+  utter_pregunta_introversion:
+    - text: "oye ¿Sabes qué es la introversión?"
+      buttons:
+        - title: "Sí"
+          payload: "/int_afirmar_saludo"
+        - title: "No"
+          payload: "/int_negar_saludo"
+
+  utter_explicar_introversion_si:
+    - text: "¡Genial! Igual te lo explico brevemente: la introversión es una forma natural de ser. Disfrutas más de la calma y puedes sentirte agotado en situaciones sociales intensas. ¿Así entendido?"
+      buttons:
+        - title: "Entendido"
+          payload: "/int_entendido_saludo"
+
+  utter_explicar_introversion_no:
+    - text: "No pasa nada, te lo explico brevemente: la introversión es una forma natural de ser. Disfrutas más de la calma y puedes sentirte agotado en situaciones sociales intensas. ¿Así entendido?"
+      buttons:
+        - title: "Entendido"
+          payload: "/int_entendido_saludo"
+
+  utter_actividades_intro:
+    - text: "Estupendo, tengo una serie de tecnicas de manejo emocional y actividades distractoras que espero te ayuden a sentirte mejor. ¿Listo?"
+      buttons:
+        - title: "Entendido"
+          payload: "/int_entendido_saludo"
+
+
+  utter_default:
+    - text: "Lo siento, no entendí bien eso. ¿Podrías reformularlo o preguntarme algo relacionado con la ansiedad social?"
+
+
+
+actions:
+  - action_guardar_nombre
+  - action_preguntar_emocion
+  - action_explicar_introversion
+
+  #acciones para el ----DELAY----
+  - action_delay_pequeno
+  - action_delay_medio
+  - action_delay_grande
+  - action_preguntar_comfort_con_delay
+
+session_config:
+  session_expiration_time: 20
+  carry_over_slots_to_new_session: true
