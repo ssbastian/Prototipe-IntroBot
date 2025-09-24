@@ -25,7 +25,7 @@ class ActionDeactivateFeedback(Action):
         varMejora = tracker.get_slot("slot_mejora")
         varSatisfaccion = tracker.get_slot("slot_satisfaccion")
         varRecomendacion = tracker.get_slot("slot_recomendacion")
-        # guardarEncuesta(sender_id, varNombre, varMejora, varSatisfaccion, varRecomendacion) 
+        guardarEncuesta(sender_id, varNombre, varMejora, varSatisfaccion, varRecomendacion) 
         
         result = [
             SlotSet("slot_feedback_pendiente", False),

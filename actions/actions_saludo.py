@@ -26,7 +26,7 @@ class ActionGuardarNombre(Action):
             dispatcher.utter_message(text="No entendí tu varNombre, ¿puedes repetirlo?")
             return []
 
-        # guardarUsuario(sender_id, varNombre)
+        guardarUsuario(sender_id, varNombre)
 
         #dispatcher.utter_message(text=f"Gracias, {varNombre}, he guardado tu nombre")
         dispatcher.utter_message(response ="utter_nombre_guardado")
@@ -66,7 +66,7 @@ class ActionPreguntarEmocion(Action):
         }
         # Mensaje inicial
         message = {
-            "text": "Para poder ayudarte mejor, ¿cómo describirías tu comfort en situaciones sociales hoy?",
+            "text": "Para adaptar las actividades a cómo te sientes hoy, ¿cómo describirías tu nivel de comfort frente a situaciones sociales en este momento?",
             "reply_markup": reply_markup,
             "parse_mode": "Markdown"
         }

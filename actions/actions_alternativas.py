@@ -5,7 +5,6 @@ from rasa_sdk.executor import CollectingDispatcher
 
 
 
-
 class ActionMenuRecurso(Action):
     def name(self) -> Text:
         return "action_menu_recurso"
@@ -14,29 +13,62 @@ class ActionMenuRecurso(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        # Primero mostrar el mensaje con los recursos disponibles
-        dispatcher.utter_message(
-            text="Mirá por el momento tengo estos recursos disponibles para ti:\n"
-                 "1️⃣ Meditación guiada (5 min)\n"
-                 "2️⃣ Ejercicios de respiración\n"
-                 "3️⃣ Artículo sobre manejo emocional"
-        )
-
-        # Luego mostrar los botones de selección
+        slot_name = tracker.get_slot("slot_name") or "amigo"
+        
+        # Crear mensaje unificado con el mismo formato
+        mensaje_texto = (f"Mirá por el momento tengo estos recursos disponibles para ti:\n\n"
+                        f"🧘‍♂️ 1️⃣ Artículo sobre meditación\n"
+                        f"🌬️ 2️⃣ Artículo de ejercicios de respiración\n"
+                        f"📚 3️⃣ Artículo sobre manejo emocional\n\n"
+                        f"{slot_name} ¿qué recurso te gustaría conocer?")
+        
+        # Botones inline - Mismo formato que ActionOfrecerActividad
         botones = [
-            {"title": "Boton 1️⃣", "payload": '/int_menu_sel_recurso{"ent_tipo_recurso":"meditacion"}'},
-            {"title": "Boton 2️⃣", "payload": '/int_menu_sel_recurso{"ent_tipo_recurso":"respiracion"}'},
-            {"title": "Boton 3️⃣", "payload": '/int_menu_sel_recurso{"ent_tipo_recurso":"articulo"}'}
+            [{"text": "🧘‍♂️ Meditación guiada", "callback_data": '/int_menu_sel_recurso{"ent_tipo_recurso":"meditacion"}'}],
+            [{"text": "🌬️ Ejercicios de respiración", "callback_data": '/int_menu_sel_recurso{"ent_tipo_recurso":"respiracion"}'}],
+            [{"text": "📚 Artículo emocional", "callback_data": '/int_menu_sel_recurso{"ent_tipo_recurso":"articulo"}'}]
         ]
 
-        slot_name = tracker.get_slot("name") or "amigo"
-        
-        dispatcher.utter_message(
-            text=f"{slot_name} ¿qué recurso te gustaria conocer?",
-            buttons=botones
-        )
-        
+        mensaje = {
+            "text": mensaje_texto,
+            "reply_markup": {"inline_keyboard": botones}
+        }
+
+        dispatcher.utter_message(json_message=mensaje)
         return []
+
+
+# class ActionMenuRecurso(Action):
+#     def name(self) -> Text:
+#         return "action_menu_recurso"
+
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+#         # Primero mostrar el mensaje con los recursos disponibles
+#         dispatcher.utter_message(
+#             text="Mirá por el momento tengo estos recursos disponibles para ti:\n"
+#                  "1️⃣ Meditación guiada (5 min)\n"
+#                  "2️⃣ Ejercicios de respiración\n"
+#                  "3️⃣ Artículo sobre manejo emocional"
+#         )
+
+#         # Luego mostrar los botones de selección
+#         botones = [
+#             {"title": "Boton 1️⃣", "payload": '/int_menu_sel_recurso{"ent_tipo_recurso":"meditacion"}'},
+#             {"title": "Boton 2️⃣", "payload": '/int_menu_sel_recurso{"ent_tipo_recurso":"respiracion"}'},
+#             {"title": "Boton 3️⃣", "payload": '/int_menu_sel_recurso{"ent_tipo_recurso":"articulo"}'}
+#         ]
+
+#         slot_name = tracker.get_slot("slot_name") or "amigo"
+        
+#         dispatcher.utter_message(
+#             text=f"{slot_name} ¿qué recurso te gustaria conocer?",
+#             buttons=botones
+#         )
+        
+#         return []
     
     
 class ActionMenuAlternativa(Action):
@@ -48,7 +80,7 @@ class ActionMenuAlternativa(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         botones = [
-            {"title": "🤖 Hablar", "payload": '/int_menu_sel_alternativa{"ent_tipo_alternativa":"sentimientos"}'},
+            # {"title": "🤖 Hablar", "payload": '/int_menu_sel_alternativa{"ent_tipo_alternativa":"sentimientos"}'},
             {"title": "📚 Recurso", "payload": '/int_menu_sel_alternativa{"ent_tipo_alternativa":"recursos"}'},
             {"title": "⏹️ Terminar sesión", "payload": '/int_despedirse'}
         ]
@@ -156,9 +188,13 @@ class ActionEntregaRecursoSel(Action):
             dispatcher.utter_message(text="Lo siento, no tengo ese recurso disponible ahora.")
             return []
              
+        # dispatcher.utter_message(
+        #     text=recurso["text"],
+        #     image=recurso["image"]
+        # )
+        
         dispatcher.utter_message(
-            text=recurso["text"],
-            image=recurso["image"]
+            text=recurso["text"]
         )
         
         dispatcher.utter_message(

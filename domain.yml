@@ -164,7 +164,7 @@ responses:
   - text: ¡Listo, {slot_name}! Espero no olvidarlo… aunque soy un bot, así que tengo buena memoria.
   - text: ¡Excelente, {slot_name}! Ahora ya somos oficialmente conocidos.
   utter_presentarse:
-  - text: Hola, soy un bot🤖 prototipo creado para apoyar a personas introvertidas con sus habilidades comunicacionales especificamente en situaciones sociales. Estoy aquí para escucharte y ofrecerte consejos útiles. 😊
+  - text: Hola, soy Introbot 🤖. Soy un prototipo creado para ayudarte a manejar la ansiedad y las emociones abrumadoras que a veces surgen antes o durante las interacciones sociales. Estoy aquí para recomendarte actividades rápidas que te ayuden a encontrar calma y confianza. 😊
   utter_pedir_nombre:
   - text: ¿cómo te llamas?
   utter_saludo_con_nombre:
@@ -255,31 +255,35 @@ responses:
   utter_respetar_decision:
   - text: Esta bien {slot_name} respeto tu desición y si en algun momento quieres realizar alguna actividad solo dimelo 😀.
   utter_menu_list_actividadesN:
-  - text: |
-      Opcones para momentos dificiles:
-      1️⃣ Respiración 4-7-8 (2 min)
-      2️⃣ Escritura terapéutica (10 min)
-      3️⃣ Audio de relajación (5 min)
-      4️⃣ Estiramientos rápidos
-      5️⃣ Todas las actividades
-      ¿Dime que número te interesa?
+    - text: |
+        🌧️  *Opciones para momentos difíciles:*
+
+        😮‍💨 1️⃣ **Respiración 4-7-8** (2 min) - *Calma inmediata*
+        📝 2️⃣ **Escritura terapéutica** (10 min) - *Libera emociones*
+        🎧 3️⃣ **Audio de relajación** (5 min) - *Desconexión guiada*
+        💪 4️⃣ **Estiramientos rápidos** - *Libera tensión corporal*
+        🌈 5️⃣ **Todas las actividades** - *Explora más opciones*
+
   utter_menu_list_actividadesP:
-  - text: |
-      ¡Aprovecha esta energía!:
-      1️⃣ Compartir tu alegría con alguien especial
-      2️⃣ Bailar 3 canciones alegres
-      3️⃣ Empezar un proyecto creativo
-      4️⃣ Hacer una lista de gratitud
-      5️⃣ Todas las actividades
-      ¿Dime que número te interesa?
+    - text: |
+        🌟  *¡Aprovecha esta energía positiva!*
+
+        💌 1️⃣ **Compartir tu alegría** - *Conecta con alguien especial*
+        💃 2️⃣ **Bailar 3 canciones alegres** - *Libera endorfinas*
+        🎨 3️⃣ **Proyecto creativo** - *Canaliza tu inspiración*
+        🙏 4️⃣ **Lista de gratitud** - *Fortalece emociones positivas*
+        🔍 5️⃣ **Todas las actividades** - *Descubre más opciones*
+
   utter_menu_list_actividadesNE:
-  - text: |
-      Para momentos tranquilos:
-      1️⃣ Meditación breve (2-5 min)
-      2️⃣ Organizar un espacio personal
-      3️⃣ Leer algo inspirador
-      4️⃣ Hidratación consciente
-      5️⃣ Todas las actividades
+    - text: |
+        🌤️  *Para momentos de tranquilidad:*
+
+        🧘 1️⃣ **Meditación breve** (2-5 min) - *Centra tu mente*
+        🏠 2️⃣ **Organizar espacio personal** - *Armonía ambiental*
+        📖 3️⃣ **Lectura inspiradora** - *Nutre tus pensamientos*
+        💧 4️⃣ **Hidratación consciente** - *Conexión cuerpo-mente*
+        🔍 5️⃣ **Todas las actividades** - *Ver completo portafolio*
+
   utter_menu_sel_actividad:
   - text: 'Elige una opción:'
     buttons:
@@ -501,11 +505,11 @@ responses:
   - text: Veo que esto te afecta. ¿Quieres que exploremos juntos una solución?
   utter_menu_list_alternativa:
   - text: |
-      Tengo estas alternativas disponibles para ti:
-      1️⃣ Hablar de cómo te sientes
-      2️⃣ Recibir algún recurso
-      3️⃣ Terminar la conversación
-      ¿Qué número te interesa? dime
+      Y bueno tengo estas alternativas disponibles para ti:
+      1️⃣ 🗣️ Hablar de cómo te sientes. *Puedes contarme sobre alguna situación social que te haya generado ansiedad*
+      2️⃣ Recursos Útiles: Accede a artículos o videos cortos sobre comunicación y manejo de la ansiedad
+      3️⃣ ✅ Finalizar la sesión
+ 
   utter_usuario_se_despiede:
   - text: 👋 ¡Adiós! Quiero terminar la sesión
   utter_menu_list_recurso:

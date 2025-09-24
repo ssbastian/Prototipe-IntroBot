@@ -144,6 +144,49 @@ class ActionEjecutarOpcion(Action):
         return []
 
 
+# class ActionOfrecerActividad(Action):
+#     def name(self) -> Text:
+#         return "action_ofrecer_actividad"
+
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+#         varTipoEmocion = tracker.get_slot("slot_tipo_emocion")
+        
+#         # Definir los mensajes según la emoción
+        
+#         mensajes = {
+#             "negativo": "😔 Entiendo que estás teniendo un momento difícil, algo común cuando nos enfrentamos a situaciones sociales. ¿Te gustaría probar una **técnica rápida** para manejar estas emociones?",
+#             "positivo": "😊 ¡Genial que te sientas así! Es un buen momento para **practicar alguna habilidad social** y seguir mejorando. ¿Te interesa?",
+#             "neutro": "😐 Los días neutrales son ideales para **prepararnos para futuras conversaciones**. ¿Quieres explorar algún ejercicio?"
+#         }
+        
+#         # Obtener el mensaje o usar uno por defecto
+#         mensaje = mensajes.get(varTipoEmocion, "No detecté tu selección. Por favor elige una opción válida.")
+        
+#         # Enviar mensaje con botones
+#         dispatcher.utter_message(
+#             text=mensaje,
+#             # buttons=[
+#             #     {"title": "✅ Sí, muéstrame actividades", "payload": "/int_si_actividades"},
+#             #     {"title": "❌ No, ahora no", "payload": "/int_no_actividades"}
+#             # ]
+#             buttons=[
+#                 {
+#                     "title": "🧠 Sí, quiero una actividad", 
+#                     "payload": "/int_si_actividades"
+#                 },
+#                 {
+#                     "title": "🔄 Tal vez después", 
+#                     "payload": "/int_no_actividades"
+#                 }
+#             ]
+#         )
+        
+#         return []
+    
+    
 class ActionOfrecerActividad(Action):
     def name(self) -> Text:
         return "action_ofrecer_actividad"
@@ -156,24 +199,28 @@ class ActionOfrecerActividad(Action):
         
         # Definir los mensajes según la emoción
         mensajes = {
-            "negativo": "😔 Veo que estás pasando por un momento difícil. ¿Te gustaría probar alguna de estas actividades para sentirte mejor?",
-            "positivo": "😊 ¡Me alegra que te sientas bien! ¿Quieres mantener esa energía positiva con alguna actividad?",
-            "neutro": "😐 Entiendo que te sientes neutral. ¿Te gustaría explorar alguna actividad para equilibrar tu día?"
+            "negativo": "😔 Entiendo que estás teniendo un momento difícil, algo común cuando nos enfrentamos a situaciones sociales. ¿Te gustaría probar una **técnica rápida** para manejar estas emociones?",
+            "positivo": "😊 ¡Genial que te sientas así! Es un buen momento para **practicar alguna habilidad social** y seguir mejorando. ¿Te interesa?",
+            "neutro": "😐 Los días neutrales son ideales para **prepararnos para futuras conversaciones**. ¿Quieres explorar algún ejercicio?"
         }
         
         # Obtener el mensaje o usar uno por defecto
-        mensaje = mensajes.get(varTipoEmocion, "No detecté tu selección. Por favor elige una opción válida.")
+        mensaje_texto = mensajes.get(varTipoEmocion, "No detecté tu selección. Por favor elige una opción válida.")
         
-        # Enviar mensaje con botones
-        dispatcher.utter_message(
-            text=mensaje,
-            buttons=[
-                {"title": "✅ Sí, muéstrame actividades", "payload": "/int_si_actividades"},
-                {"title": "❌ No, ahora no", "payload": "/int_no_actividades"}
-            ]
-        )
-        
-        return []
+        # Botones inline - CADA BOTÓN EN SU PROPIA FILA
+        botones = [
+            [{"text": "🧠 Sí, quiero probar una actividad", "callback_data": "/int_si_actividades"}],
+            [{"text": "🔄 Tal vez después", "callback_data": "/int_no_actividades"}]
+        ]
+
+        mensaje = {
+            "text": mensaje_texto,
+            "reply_markup": {"inline_keyboard": botones}
+        }
+
+        dispatcher.utter_message(json_message=mensaje)
+        return []    
+    
     
 #Mostrar todas las actividades 
 from typing import Any, Text, Dict, List
@@ -269,62 +316,6 @@ class ActionMostrarMenuAll(Action):
 
 
 
-# class ActionMenuSelActividad(Action):
-#     def name(self) -> Text:
-#         return "action_menu_sel_actividad"
-
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-#         botones = [
-#             [
-#                 {"text": "🔴 Opción 1", "callback_data": '/int_sel_actividad{"ent_numActividad":"1"}'},
-#                 {"text": "🟡 Opción 2", "callback_data": '/int_sel_actividad{"ent_numActividad":"2"}'},
-#                 {"text": "🟢 Opción 3", "callback_data": '/int_sel_actividad{"ent_numActividad":"3"}'}
-#             ],
-#             [
-#                 {"text": "⭐ Opción 4", "callback_data": '/int_sel_actividad{"ent_numActividad":"4"}'},
-#                 {"text": "📋 Ver todas", "callback_data": '/int_actividades_mostrarAll{"ent_actividades_all":"false"}'}
-#             ]
-#         ]
-
-#         mensaje = {
-#             "text": "Elige el numero de actividad que te interesa:",
-#             "reply_markup": {"inline_keyboard": botones}
-#         }
-
-#         dispatcher.utter_message(json_message=mensaje)
-#         return []
-
-
-
-# class ActionMenuNoProfundizarActividades(Action):
-#     def name(self) -> Text:
-#         return "action_menu_no_profundizar_actividades"
-
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-#         botones = [
-#             [
-#                 {"text": "🔙 Actividades", "callback_data": "/int_si_actividades"},
-#                 {"text": "✨ Alternativas", "callback_data": "/int_no_actividades"}
-#             ],
-#             [
-#                 {"text": "⏹️ Quieres terminar la sesión", "callback_data": "/int_despedirse"}
-#             ]
-#         ]
-
-#         mensaje = {
-#             "text": "¿Quieres seguir practicando estas actividades o prefieres ver otras ideas? \n También podemos cerrar la sesión si ya es suficiente por hoy ",
-#             "reply_markup": {"inline_keyboard": botones}
-#         }
-
-#         dispatcher.utter_message(json_message=mensaje)
-#         return []
-
 class ActionMenuSelActividad(Action):
     def name(self) -> Text:
         return "action_menu_sel_actividad"
@@ -334,18 +325,25 @@ class ActionMenuSelActividad(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         botones = [
-            {"title": "🔴 Opción 1", "payload": '/int_sel_actividad{"ent_numActividad":"1"}'},
-            {"title": "🟡 Opción 2", "payload": '/int_sel_actividad{"ent_numActividad":"2"}'},
-            {"title": "🟢 Opción 3", "payload": '/int_sel_actividad{"ent_numActividad":"3"}'},
-            {"title": "⭐ Opción 4", "payload": '/int_sel_actividad{"ent_numActividad":"4"}'},
-            {"title": "📋 Ver todas", "payload": '/int_actividades_mostrarAll{"ent_actividades_all":"false"}'}
+            [
+                {"text": "🔴 Opción 1", "callback_data": '/int_sel_actividad{"ent_numActividad":"1"}'},
+                {"text": "🟡 Opción 2", "callback_data": '/int_sel_actividad{"ent_numActividad":"2"}'},
+                {"text": "🟢 Opción 3", "callback_data": '/int_sel_actividad{"ent_numActividad":"3"}'}
+            ],
+            [
+                {"text": "⭐ Opción 4", "callback_data": '/int_sel_actividad{"ent_numActividad":"4"}'},
+                {"text": "📋 Ver todas", "callback_data": '/int_actividades_mostrarAll{"ent_actividades_all":"false"}'}
+            ]
         ]
 
-        dispatcher.utter_message(
-            text="Elige el número de actividad que te interesa:",
-            buttons=botones
-        )
+        mensaje = {
+            "text": "Elige el numero de actividad que te interesa:",
+            "reply_markup": {"inline_keyboard": botones}
+        }
+
+        dispatcher.utter_message(json_message=mensaje)
         return []
+
 
 
 class ActionMenuNoProfundizarActividades(Action):
@@ -357,16 +355,65 @@ class ActionMenuNoProfundizarActividades(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         botones = [
-            {"title": "🔙 Actividades", "payload": "/int_si_actividades"},
-            {"title": "✨ Alternativas", "payload": "/int_no_actividades"},
-            {"title": "⏹️ Quieres terminar la sesión", "payload": "/int_despedirse"}
+            [
+                {"text": "🔙 Actividades", "callback_data": "/int_si_actividades"},
+                {"text": "✨ Alternativas", "callback_data": "/int_no_actividades"}
+            ],
+            [
+                {"text": "⏹️ Quieres terminar la sesión", "callback_data": "/int_despedirse"}
+            ]
         ]
 
-        dispatcher.utter_message(
-            text="¿Quieres seguir practicando estas actividades o prefieres ver otras ideas?\nTambién podemos cerrar la sesión si ya es suficiente por hoy.",
-            buttons=botones
-        )
+        mensaje = {
+            "text": "¿Quieres seguir practicando estas actividades o prefieres ver otras ideas? \n También podemos cerrar la sesión si ya es suficiente por hoy ",
+            "reply_markup": {"inline_keyboard": botones}
+        }
+
+        dispatcher.utter_message(json_message=mensaje)
         return []
+
+# class ActionMenuSelActividad(Action):
+#     def name(self) -> Text:
+#         return "action_menu_sel_actividad"
+
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+#         botones = [
+#             {"title": "🔴 Opción 1", "payload": '/int_sel_actividad{"ent_numActividad":"1"}'},
+#             {"title": "🟡 Opción 2", "payload": '/int_sel_actividad{"ent_numActividad":"2"}'},
+#             {"title": "🟢 Opción 3", "payload": '/int_sel_actividad{"ent_numActividad":"3"}'},
+#             {"title": "⭐ Opción 4", "payload": '/int_sel_actividad{"ent_numActividad":"4"}'},
+#             {"title": "📋 Ver todas", "payload": '/int_actividades_mostrarAll{"ent_actividades_all":"false"}'}
+#         ]
+
+#         dispatcher.utter_message(
+#             text="Elige el número de actividad que te interesa:",
+#             buttons=botones
+#         )
+#         return []
+
+
+# class ActionMenuNoProfundizarActividades(Action):
+#     def name(self) -> Text:
+#         return "action_menu_no_profundizar_actividades"
+
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+#         botones = [
+#             {"title": "🔙 Actividades", "payload": "/int_si_actividades"},
+#             {"title": "✨ Alternativas", "payload": "/int_no_actividades"},
+#             {"title": "⏹️ Quieres terminar la sesión", "payload": "/int_despedirse"}
+#         ]
+
+#         dispatcher.utter_message(
+#             text="¿Quieres seguir practicando estas actividades o prefieres ver otras ideas?\nTambién podemos cerrar la sesión si ya es suficiente por hoy.",
+#             buttons=botones
+#         )
+#         return []
 
 
 # ========================================ACTIVIDADES DETALLADAS =========================================================

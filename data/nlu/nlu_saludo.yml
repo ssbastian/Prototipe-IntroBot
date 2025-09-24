@@ -6,6 +6,7 @@ nlu:
 #TODO SALUDOS
 - intent: int_dar_nombre
   examples: |
+    - Soy [César](ent_person_nombre)
     - [andres](ent_person_nombre)
     - me llamo [daniel](ent_person_nombre)
     - Soy [Sebastián](ent_person_nombre)
@@ -51,74 +52,13 @@ nlu:
     - Me conocen por [Vane](ent_person_nombre)
     - Prefiero [Majo](ent_person_nombre)
     - Soy [Fran](ent_person_nombre), pero dime como quieras
+    - Me llamo [Nicolás Arcila Campo](ent_person_nombre)  # ✅ NUEVO EJEMPLO
+    - Soy [Jimmy Alejandro Campo Zambrano](ent_person_nombre)  # ✅ NUEVO EJEMPLO
+    - Mi nombre es [Jhon Anderson Cordoba Pizo](ent_person_nombre)  # ✅ NUEVO EJEMPLO
 
-
-- lookup: ent_person_nombre
+- regex: ent_person_nombre
   examples: |
-    - Sebastián
-    - Matias
-    - Daniela
-    - Isa
-    - Brayan
-    - nicolas
-    - jimmy
-    - nahir
-    - jhon
-    - luis
-    - jhonatan
-    - elian
-    - angel
-    - juan
-    - michel
-    - yannis
-    - kevin
-    - fredy
-    - franklin
-    - daniel
-    - jhoan
-    - jheison
-    - santiago
-    - Briantt
-    - Carlos
-    - Franci
-    - María
-    - Jose
-    - Andrea
-    - Juan
-    - Pedro
-    - Camila
-    - Luis
-    - Tatiana
-    - Isabela
-    - Gabriel
-    - Lucía
-    - Fernanda
-    - Valeria
-    - Pablo
-    - Rafael
-    - Carla
-    - Memo
-    - Sofi
-    - Frank
-    - Felipe
-    - Miguel Ángel
-    - Ricardo
-    - Natalia
-    - Pedro
-    - Angeline
-    - Jimena
-    - Ximena
-    - Angie
-    - Luis
-    - Octavio
-    - Elisa
-    - Yesid
-    - Cesar
-    - Andres
-    - María
-    - Mateo
-    - Yesid
-
+    - \b(Nicolás Arcila Campo|Jimmy Alejandro Campo Zambrano|Nahir Alejandro Chavez Monpotes|Jhon Anderson Cordoba Pizo|Luis Alejandro Florez Sanchez|Jhon Sebastián Galindez Campo|Jhonatan Mauricio Gomez Gomez|Elian Stiven Gomez Zuñiga|Angel David Hoyos Morales|Juan Pablo Jimenez Alzate|Michel Pamela Lopez Dorado|Yannis Camila Luna Muñoz|Angel David Macias Santiago|Kevin Stiven Muñoz Ordoñez|Fredy Alexander Navia Chilito|Franklin Dainober Ñañez Chilito|Juan Esteban Opocue Medina|Daniel Stiven Orrego Ordóñez|Jhoan David Rodriguez Valencia|Jheison Stiven Toro Díaz|Santiago Alberto Vela Eraso|Sebastián|Matias|Daniela|Isa|Brayan|nicolas|jimmy|nahir|jhon|luis|jhonatan|elian|angel|juan|michel|yannis|kevin|fredy|franklin|daniel|jhoan|jheison|santiago|Briantt|Carlos|Franci|María|Jose|Andrea|Juan|Pedro|Camila|Luis|Tatiana|Isabela|Gabriel|Lucía|Fernanda|Valeria|Pablo|Rafael|Carla|Memo|Sofi|Frank|Felipe|Miguel Ángel|Ricardo|Natalia|Pedro|Angeline|Jimena|Ximena|Angie|Luis|Octavio|Elisa|Yesid|Cesar|Andres|María|Mateo|Yesid|César)\b
 
 - intent: int_saludo
   examples: |

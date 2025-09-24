@@ -48,14 +48,12 @@ slots:
         intent: int_actividades_mostrarAll
 
 responses:
-
   utter_menu_list_alternativa:
-    - text: |
-        Tengo estas alternativas disponibles para ti:
-        1️⃣ Hablar de cómo te sientes
-        2️⃣ Recibir algún recurso
-        3️⃣ Terminar la conversación
-        ¿Qué número te interesa? dime
+  - text: |
+      Y bueno tengo estas alternativas disponibles para ti:
+      1️⃣ 🗣️ Hablar de cómo te sientes. *Puedes contarme sobre alguna situación social que te haya generado ansiedad*
+      2️⃣ Recursos Útiles: Accede a artículos o videos cortos sobre comunicación y manejo de la ansiedad
+      3️⃣ ✅ Finalizar la sesión
 
   # utter_menu_button_alternativa:
   #   - text: "¿Te gustaría en cambio..."

@@ -54,8 +54,12 @@ responses:
     - text: "¡Listo, {slot_name}! Espero no olvidarlo… aunque soy un bot, así que tengo buena memoria."
     - text: "¡Excelente, {slot_name}! Ahora ya somos oficialmente conocidos."
 
+  # utter_presentarse:
+  #   - text: "Hola, soy un bot🤖 prototipo creado para apoyar a personas introvertidas con sus habilidades comunicacionales especificamente en situaciones sociales. Estoy aquí para escucharte y ofrecerte consejos útiles. 😊"
+
   utter_presentarse:
-    - text: "Hola, soy un bot🤖 prototipo creado para apoyar a personas introvertidas con sus habilidades comunicacionales especificamente en situaciones sociales. Estoy aquí para escucharte y ofrecerte consejos útiles. 😊"
+    - text: "Hola, soy Introbot 🤖. Soy un prototipo creado para ayudarte a manejar la ansiedad y las emociones abrumadoras que a veces surgen antes o durante las interacciones sociales. Estoy aquí para recomendarte actividades rápidas que te ayuden a encontrar calma y confianza. 😊"
+
   utter_pedir_nombre:
     - text: "¿cómo te llamas?"
 
@@ -98,11 +102,8 @@ responses:
         - title: "Entendido"
           payload: "/int_entendido_saludo"
 
-
   utter_default:
     - text: "Lo siento, no entendí bien eso. ¿Podrías reformularlo o preguntarme algo relacionado con la ansiedad social?"
-
-
 
 actions:
   - action_guardar_nombre
