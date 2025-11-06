@@ -1,9 +1,8 @@
-# Herramienta para mejorar las habilidades comunicativas en introvertidos ansiosos🤖
+# Herramienta para mejorar las habilidades comunicativas para introvertidos ansiosos
 
 
 Este es un prototipo chatbot desarrollado con **Rasa** para el proyecto de tesis.
 
-TODO
 
 ## 📂 Estructura del Proyecto
 ```
@@ -21,8 +20,8 @@ tests/
 ## 🛠 Instalación y Uso
 
 ### 🔹 Requisitos
-- Python 3.8
-- Rasa Open Source 2.8.23
+- Python 3.10
+- Rasa Open Source 3.5
 - Virtualenv (opcional pero recomendado)
 
 ## 🔹 Configuración del Entorno Virtual
@@ -78,7 +77,4 @@ Una vez que el chatbot esté en funcionamiento, puedes interactuar con él a tra
   <img src="img/prototipo4.png" alt="Prototipo 4" width="200" style="margin: 10px;">
 </p>
 
-
-
-## 📜 Licencia
 
