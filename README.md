@@ -1,4 +1,4 @@
-# Herramienta para mejorar las habilidades comunicativas en introvertidos sociales🤖
+# Herramienta para mejorar las habilidades comunicativas en introvertidos ansiosos🤖
 
 
 Este es un prototipo chatbot desarrollado con **Rasa** para el proyecto de tesis.
