@@ -68,8 +68,8 @@ Una vez que el chatbot esté en funcionamiento, puedes interactuar con él a tra
 
 
 ## 📸 Capturas de Pantalla
-![Captura de Pantalla 1](ruta/a/captura1.png)
-![Captura de Pantalla 2](ruta/a/captura2.png)
+![Captura de Pantalla 1](img/prototipo1.png)
+![Captura de Pantalla 2](img/prototipo2.png)
 
 
 ## 📜 Licencia
