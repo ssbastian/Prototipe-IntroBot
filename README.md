@@ -66,7 +66,7 @@ Una vez que el chatbot esté en funcionamiento, puedes interactuar con él a tra
 ```
 
 
-## 📸 Capturas de Pantalla
+## 📸 Capturas de Pantalla del chatbot desplegado en Telegram
 <p align="center">
   <img src="img/prototipo1.png" alt="Prototipo 1" width="200" style="margin: 10px;">
   &nbsp;&nbsp;
